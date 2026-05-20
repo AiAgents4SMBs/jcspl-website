@@ -34,7 +34,8 @@ export const navLinks = [
   { href: '/#case-studies', label: 'Case Studies' },
   { href: '/trainings', label: 'Trainings' },
   { href: '/chemicals', label: 'Chemicals' },
-  { href: '/#contact', label: 'Contact' },
+  { href: '/papers/', label: 'Papers' },
+  { href: '/contact/', label: 'Contact' },
 ] as const;
 
 export const verticals = [
