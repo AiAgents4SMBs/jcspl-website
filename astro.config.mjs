@@ -4,8 +4,6 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
-import cloudflare from "@astrojs/cloudflare";
-
 export default defineConfig({
   site: 'https://www.just-chemicals.com',
   output: 'static',
@@ -32,5 +30,4 @@ export default defineConfig({
     domains: ['images.unsplash.com'],
   },
 
-  adapter: cloudflare()
 });
