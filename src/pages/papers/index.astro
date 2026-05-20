@@ -1,0 +1,46 @@
+---
+import BaseLayout from '@/components/layout/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const papers = (await getCollection('papers', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+const topicLabel: Record<string, string> = {
+  boiler: 'Boiler & BTF',
+  cooling: 'Cooling Water',
+  ro: 'RO & Membranes',
+  coal: 'Coal Quality',
+  'water-treatment': 'Water Treatment',
+  'cycle-chemistry': 'Steam-Water Cycle',
+  general: 'General',
+};
+---
+<BaseLayout
+  title="Technical Papers — Power Plant Chemistry, BTF, RO, Cycle Chemistry"
+  description="Republished technical papers by Soumitra Banerjee on boiler tube failure mechanisms, reverse osmosis operations, cooling water dynamics, and IAPWS/EPRI-aligned steam-water cycle chemistry."
+  canonicalPath="/papers"
+  variant="doc"
+>
+  <div class="container-page">
+    <p class="text-xs uppercase tracking-widest text-ink-500">Insights</p>
+    <h1 class="heading-xxl mt-2">Technical Papers</h1>
+    <p class="lede mt-4 max-w-3xl">
+      Field-tested writing on power plant chemistry — boiler tube failure mechanisms, RO best practices, cooling water dynamics, coal quality, and steam-water cycle chemistry. Adapted from journals and conference proceedings.
+    </p>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {papers.map((p) => (
+        <a href={`/papers/${p.id}/`} class="bento-tile group">
+          <span class="eyebrow">{topicLabel[p.data.topic] ?? 'Paper'}</span>
+          <h2 class="mt-3 font-display text-xl text-ink-900 group-hover:text-accent">{p.data.title}</h2>
+          <p class="mt-2 text-ink-600 leading-relaxed text-sm">{p.data.summary}</p>
+          <div class="mt-4 flex items-center justify-between text-xs text-ink-500">
+            <span>{p.data.venue ?? 'Just-Chemicals'}{p.data.publishedYear ? ` · ${p.data.publishedYear}` : ''}</span>
+            <span class="font-medium text-accent">Read →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

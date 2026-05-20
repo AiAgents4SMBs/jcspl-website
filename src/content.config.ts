@@ -31,4 +31,19 @@ const verticals = defineCollection({
   }),
 });
 
-export const collections = { verticals };
+const papers = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/papers' }),
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    authors: z.array(z.string()).default(['Soumitra Banerjee']),
+    publishedYear: z.number().optional(),
+    venue: z.string().optional(),
+    keywords: z.array(z.string()).default([]),
+    topic: z.enum(['boiler', 'cooling', 'ro', 'coal', 'water-treatment', 'cycle-chemistry', 'general']).default('general'),
+    date: z.coerce.date(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { verticals, papers };
