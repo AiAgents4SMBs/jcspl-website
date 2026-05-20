@@ -1,0 +1,21 @@
+---
+import Button from '../ui/Button.astro';
+interface Props { name: string; accentHex: string; }
+const { name, accentHex } = Astro.props as Props;
+---
+<section class="container-page py-16 md:py-24">
+  <div class="relative overflow-hidden rounded-3xl border border-border-hair bg-card p-10 md:p-14 shadow-lift">
+    <div class="absolute -top-24 -right-24 h-80 w-80 rounded-full" style={`background: radial-gradient(circle, ${accentHex}22 0%, transparent 70%)`} aria-hidden="true"></div>
+    <div class="relative grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-center">
+      <div>
+        <span class="eyebrow">Next step</span>
+        <h2 class="heading-xl mt-3">Talk to us about {name}.</h2>
+        <p class="lede mt-4">A 30-minute diagnostic call with Soumitra Banerjee is the fastest way to understand what is actually happening at your plant — and what it will cost to fix it.</p>
+      </div>
+      <div class="flex flex-col gap-3 md:items-end">
+        <Button href="/#contact" size="lg">Request a Diagnostic Call</Button>
+        <a href="/#about" class="text-sm text-ink-600 hover:text-accent">About Juschem Solutions →</a>
+      </div>
+    </div>
+  </div>
+</section>

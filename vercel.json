@@ -1,0 +1,12 @@
+{
+  "framework": "astro",
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/chemicals.html", "destination": "/chemicals", "permanent": true },
+    { "source": "/trainings.html", "destination": "/trainings", "permanent": true },
+    { "source": "/trainings_final.html", "destination": "/trainings", "permanent": true },
+    { "source": "/privacypolicy.html", "destination": "/privacy", "permanent": true },
+    { "source": "/termsofservice.html", "destination": "/terms", "permanent": true }
+  ]
+}

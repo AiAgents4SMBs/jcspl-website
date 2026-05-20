@@ -1,0 +1,59 @@
+---
+const clients = [
+  'JSW Energy Ltd., Bellary',
+  'JSW Energy Ltd., Ratnagiri',
+  'JSW Energy Ltd., Barmer',
+  'Reliance Power, Butibori',
+  'The Tata Power Co. Ltd., Trombay',
+  'Maithon Power Limited (Tata Power)',
+  'IOCL Refinery HQ & Haldia Refinery',
+  'IOCL Digboi Refinery',
+  'IOCL Guwahati',
+  'Guru Gobind Singh Refinery',
+  'BPCL Kochi Refinery',
+  'L&T Power Ltd., Rajpura, Punjab',
+  'Lanco Power, Anpara',
+  'Bellary Thermal Power Station (KPCL)',
+  'Cirebon Power Services, Indonesia',
+  'Cambodian Energy Ltd.',
+  'Coastal Energen Pvt. Ltd., Tuticorin',
+  'Ind-Barath Energy (Utkal) Ltd.',
+  'Bengal Energy Ltd.',
+  'Industrial Energy Ltd.',
+  'CK Birla — Orient Cement Ltd., Chittapur',
+  'Dalmia Cement, Ariyalur',
+  'Rajshree Cement, Gulbarga (UltraTech)',
+  'Sarda Metals and Alloys Limited, Vizangram',
+  'Jindal Stainless Ltd.',
+  'Continental Carbon India Pvt. Ltd.',
+  'RSPL Ltd. (Ghadi Detergent Group)',
+  'Kesoram Rayon',
+  'TEX Biosciences Pvt. Ltd.',
+  'Grundfos Pumps',
+  'Mitra S K Private Ltd.',
+  'Quess Corp Ltd.',
+  'Priyann Enterprises',
+  'Robust Technic',
+  'EinNel Technologies',
+  'International Business Conferences (IBC)',
+  'Masters in Training',
+];
+---
+<section id="clients" class="bg-mist border-y border-border-hair py-16 md:py-24">
+  <div class="container-page">
+    <div class="max-w-2xl">
+      <span class="eyebrow">Clients</span>
+      <h2 class="heading-xl mt-3">40+ plants, four industries, three continents of impact.</h2>
+      <p class="lede mt-4">A representative list of the utilities, refineries, cement majors, and engineering houses that have engaged Juschem Solutions.</p>
+    </div>
+    <ul class="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {clients.map((c) => (
+        <li class="flex items-start gap-3 rounded-lg border border-border-hair bg-card p-4">
+          <span class="mt-1 inline-block h-1.5 w-1.5 flex-none rounded-full bg-accent" aria-hidden="true"></span>
+          <span class="text-sm text-ink-700">{c}</span>
+        </li>
+      ))}
+    </ul>
+    <p class="mt-6 text-xs text-ink-500">Trademarks and copyrights are owned by their respective owners.</p>
+  </div>
+</section>

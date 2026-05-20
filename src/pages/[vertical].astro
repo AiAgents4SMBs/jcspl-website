@@ -1,0 +1,76 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '@/components/layout/BaseLayout.astro';
+import VerticalHero from '@/components/vertical/VerticalHero.astro';
+import FeatureSplit from '@/components/vertical/FeatureSplit.astro';
+import UseCaseList from '@/components/vertical/UseCaseList.astro';
+import FAQSection from '@/components/vertical/FAQSection.astro';
+import VerticalCTA from '@/components/vertical/VerticalCTA.astro';
+import { site } from '@/lib/site';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('verticals');
+  // Skip slugs that have their own static .astro page (chemicals, trainings).
+  return entries
+    .filter((e) => !['chemicals', 'trainings'].includes(e.data.slug))
+    .map((entry) => ({
+      params: { vertical: entry.data.slug },
+      props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const data = entry.data;
+const { Content } = await render(entry);
+
+const productLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: data.name,
+  description: data.summary,
+  provider: { '@type': 'Organization', name: site.legalEntity },
+  areaServed: data.industryLabel,
+  image: data.heroImg,
+  url: `${site.url}/${data.slug}`,
+};
+
+const faqLd = data.faq.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: data.faq.map((f: { q: string; a: string }) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }
+  : null;
+---
+<BaseLayout
+  canonicalPath={`/${data.slug}`}
+  jsonLd={faqLd ? [productLd, faqLd] : productLd}
+>
+  <VerticalHero
+    name={data.name}
+    role={data.role}
+    industryLabel={data.industryLabel}
+    tagline={data.tagline}
+    summary={data.summary}
+    accentHex={data.accentHex}
+    accentSoft={data.accentSoft}
+    heroImg={data.heroImg}
+    heroAlt={data.heroAlt}
+    metrics={data.metrics}
+  />
+
+  <section class="container-page py-12 md:py-16">
+    <div class="container-prose text-lg leading-relaxed text-ink-700">
+      <Content />
+    </div>
+  </section>
+
+  <FeatureSplit features={data.features} accentHex={data.accentHex} />
+  <UseCaseList useCases={data.useCases} accentHex={data.accentHex} />
+  <FAQSection faq={data.faq} />
+  <VerticalCTA name={data.name} accentHex={data.accentHex} />
+</BaseLayout>

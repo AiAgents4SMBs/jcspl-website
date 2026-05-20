@@ -1,0 +1,75 @@
+---
+const services = [
+  {
+    title: 'Water Treatment Systems',
+    href: '#contact',
+    body: 'Consulting and auditing on RO, cooling, and wastewater treatment systems — benchmarked against IAPWS and EPRI guidelines.',
+    icon: 'droplet',
+  },
+  {
+    title: 'Water Chemistry',
+    href: '#contact',
+    body: 'Expert guidance on water and wastewater chemistry, biological controls, and compliance with industry standards.',
+    icon: 'beaker',
+  },
+  {
+    title: 'Equipment & Specialty Chemicals',
+    href: '/chemicals',
+    body: '42 SKUs across SigmaGuard, SigmaTreat, MemPro, and SigmaFloc — formulated for power plants and refineries.',
+    icon: 'flask',
+  },
+  {
+    title: 'Power Plant Chemistry Technical Services',
+    href: '#contact',
+    body: "Engineering consultancy, chemical investigation, construction supervision, and auditing of power station chemistry using Juran's Trilogy methodology.",
+    icon: 'layers',
+  },
+  {
+    title: 'Training & Certification',
+    href: '/trainings',
+    body: 'On-demand, online, and onsite courses covering boiler tube failure, RO optimisation, cooling water, and steam-water cycle chemistry — with Juschem certified credentials.',
+    icon: 'cap',
+  },
+  {
+    title: 'Turnkey Solutions',
+    href: '#contact',
+    body: 'End-to-end design, supply, and commissioning of industrial water treatment systems — from RO to ZLD compliance.',
+    icon: 'cog',
+  },
+];
+
+const iconPath = {
+  droplet: 'M12 2s6 7 6 12a6 6 0 1 1-12 0c0-5 6-12 6-12z',
+  beaker: 'M9 2h6M10 2v6L4 20a2 2 0 0 0 1.8 2.8h12.4A2 2 0 0 0 20 20L14 8V2',
+  flask: 'M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3',
+  layers: 'M12 2l10 5-10 5L2 7l10-5zM2 12l10 5 10-5M2 17l10 5 10-5',
+  cap: 'M22 10L12 5 2 10l10 5 10-5zM6 12v5c3 2 9 2 12 0v-5',
+  cog: 'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 0 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1A2 2 0 1 1 4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 0 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1A2 2 0 1 1 7 4.2l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 0 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z',
+} as const;
+---
+<section id="services" class="bg-mist border-y border-border-hair py-16 md:py-24">
+  <div class="container-page">
+    <div class="max-w-3xl">
+      <span class="eyebrow">Services</span>
+      <h2 class="heading-xl mt-3">Operational efficiency, plant economics, and chemistry — done properly.</h2>
+      <p class="lede mt-4">
+        We specialise in operational efficiency and economics in power station chemistry and water treatment, for thermal power plants, steel and cement plants, refineries, and general manufacturing. Every engagement uses the Process Management Model rooted in JURAN'S TRILOGY, benchmarked to IAPWS, EPRI, and VGB.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {services.map((s) => (
+        <a href={s.href} class="bento-tile group">
+          <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-accent-soft text-accent" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d={iconPath[s.icon as keyof typeof iconPath]} /></svg>
+          </span>
+          <h3 class="mt-5 font-display text-xl text-ink-900 group-hover:text-accent">{s.title}</h3>
+          <p class="mt-2 text-ink-600 leading-relaxed text-sm">{s.body}</p>
+          <span class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent">
+            Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+---
+import Accordion from '../ui/Accordion.astro';
+import { site } from '@/lib/site';
+interface Props { faq: { q: string; a: string }[]; }
+const { faq } = Astro.props as Props;
+---
+<section class="container-page py-16 md:py-24">
+  <div class="grid lg:grid-cols-[1fr_1.4fr] gap-12">
+    <div>
+      <span class="eyebrow">Questions</span>
+      <h2 class="heading-xl mt-3">Things plant teams ask first.</h2>
+      <p class="lede mt-4">Don't see your question? <a href={`mailto:${site.emails.contact}`} class="text-accent underline underline-offset-4">Email us</a> — we reply within a business day.</p>
+    </div>
+    <div class="rounded-2xl border border-border-hair bg-card divide-y divide-border-hair">
+      {faq.map((item) => (
+        <div class="px-6">
+          <Accordion question={item.q}>{item.a}</Accordion>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

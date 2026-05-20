@@ -1,0 +1,49 @@
+---
+import BaseLayout from '@/components/layout/BaseLayout.astro';
+import { site } from '@/lib/site';
+---
+<BaseLayout canonicalPath="/privacy" variant="doc">
+  <div class="container-prose">
+    <p class="text-xs uppercase tracking-widest text-ink-500">Last updated: {site.legalLastUpdated}</p>
+    <h1 class="heading-xl mt-2">Privacy Policy</h1>
+
+    <div class="prose-legal mt-8">
+      <p>
+        JUST-CHEMICALS.COM is owned and operated by <strong>Juschem Solutions Pvt. Ltd.</strong> We take your privacy very seriously. We have developed this privacy policy to protect the information gathered from our site visitors.
+      </p>
+
+      <h2>Information we collect</h2>
+      <p>
+        Our web server identifies the domain name and IP address of each visitor to JUST-CHEMICALS.COM. Our log files collect and store domain name information. We also track information, in aggregate, on pages and features that users access.
+      </p>
+
+      <h2>How we use it</h2>
+      <p>
+        JUST-CHEMICALS.COM does not sell such information to third parties. The information we collect may be used for audits, statistical analysis, product development, and advertising sales efforts. We may disclose site usage information to third parties only in aggregate.
+      </p>
+      <p>
+        Subscribers to our online and offline products and services are asked to provide Personally Identifiable Information (name, email address, job title, company). JUST-CHEMICALS.COM may share this information with third parties. Each issue of our e-newsletters, delivered via email, may offer the opportunity to "opt out" of our distribution list.
+      </p>
+
+      <h2>Policy changes</h2>
+      <p>
+        JUST-CHEMICALS.COM may modify this policy from time to time to reflect legal, technological, or other developments. Any such modified policy will appear at this URL.
+      </p>
+
+      <h2>To alter your details</h2>
+      <p>
+        If your contact details change, please <a href={`mailto:${site.emails.contact}`}>contact us</a> to amend them.
+      </p>
+
+      <h2>Voluntary information</h2>
+      <p>
+        We may ask for further information about you as part of online surveys or if you enter any competition or other promotional feature. This information will be used to enable us to improve our website or online service. It may also be disclosed to other companies who wish to tell you about services of interest to you.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about this policy can be sent to <a href={`mailto:${site.emails.contact}`}>{site.emails.contact}</a>.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

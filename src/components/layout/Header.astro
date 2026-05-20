@@ -1,0 +1,83 @@
+---
+import { navLinks, site } from '@/lib/site';
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<header class="sticky top-0 z-40 backdrop-blur-md border-b border-border-hair site-header">
+  <div class="container-page flex h-16 md:h-20 items-center justify-between gap-4">
+    <a href="/" class="flex items-center gap-2.5 group" aria-label={`${site.name} home`}>
+      <img src="/jcspl_logo.png" alt="" width="36" height="36" class="h-9 w-9 object-contain" />
+      <span class="font-display text-lg tracking-tight text-ink-900">
+        Just-<span class="text-accent">Chemicals</span>
+      </span>
+    </a>
+
+    <nav aria-label="Primary" class="hidden lg:flex items-center gap-1">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            'px-3 py-2 rounded-md text-sm font-medium transition-colors',
+            pathname === link.href ? 'text-accent' : 'text-ink-700 hover:text-accent'
+          ]}
+        >{link.label}</a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a
+        href="/#contact"
+        class="hidden sm:inline-flex items-center rounded-full bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-dark transition-colors shadow-card"
+      >
+        Diagnostic Call
+      </a>
+      <button
+        type="button"
+        class="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-md text-ink-900 hover:bg-muted"
+        aria-label="Open menu"
+        data-mobile-menu-toggle
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <dialog id="mobile-menu" class="m-0 w-full max-w-full p-0 backdrop:bg-ink-900/50 bg-canvas text-ink-900 open:flex flex-col lg:hidden" style="height: 100dvh;">
+    <div class="container-page flex h-16 items-center justify-between border-b border-border-hair">
+      <span class="font-display text-lg">Menu</span>
+      <button type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-md hover:bg-muted" aria-label="Close menu" data-mobile-menu-close>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+    </div>
+    <nav class="container-page py-6 flex flex-col gap-1" aria-label="Mobile">
+      {navLinks.map((link) => (
+        <a href={link.href} class="px-3 py-3 rounded-md text-base font-medium text-ink-800 hover:bg-muted" data-mobile-menu-close>{link.label}</a>
+      ))}
+      <a href="/#contact" class="mt-4 inline-flex items-center justify-center rounded-full bg-accent px-4 py-3 text-base font-medium text-white" data-mobile-menu-close>
+        Request a Diagnostic Call
+      </a>
+    </nav>
+  </dialog>
+</header>
+
+<script>
+  const dialog = document.getElementById('mobile-menu') as HTMLDialogElement | null;
+  if (dialog) {
+    document.querySelectorAll<HTMLElement>('[data-mobile-menu-toggle]').forEach((btn) => {
+      btn.addEventListener('click', () => dialog.showModal());
+    });
+    document.querySelectorAll<HTMLElement>('[data-mobile-menu-close]').forEach((btn) => {
+      btn.addEventListener('click', () => dialog.close());
+    });
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  }
+</script>
+
+<style>
+  .site-header {
+    background-color: color-mix(in srgb, var(--color-canvas) 80%, transparent);
+  }
+</style>

@@ -1,0 +1,44 @@
+---
+const cases = [
+  {
+    title: '1,200 MW Coal Plant — Boiler Tube Failure Investigation',
+    meta: 'Industry: Thermal Power · Geography: India',
+    body: 'Recurring superheater tube failures causing forced outages were investigated using IAPWS-aligned chemistry analysis. Root cause identified as hydrogen damage driven by localised deposition. A corrective chemistry programme was implemented.',
+    outcome: 'Unplanned outage incidents reduced; boiler chemistry brought into EPRI guideline limits within 90 days.',
+  },
+  {
+    title: 'Refinery — RO Plant Optimisation & Specific Water Consumption Reduction',
+    meta: 'Industry: Refinery · Geography: India',
+    body: 'RO membranes suffering from accelerated fouling, with recovery below design. Comprehensive audit covering feed water chemistry, antiscalant dosing, and cleaning protocols. MemPro antiscalant programme redesigned for the specific feed matrix.',
+    outcome: 'Membrane life extended; specific water consumption brought down toward benchmark targets.',
+  },
+  {
+    title: 'Cement Plant — Cooling Tower & Heat Exchanger Optimisation',
+    meta: 'Industry: Cement · Geography: India',
+    body: 'Scaling and microbiological fouling on heat exchangers reducing cooling efficiency. Full cooling water chemistry audit against VGB guidelines. SigmaGuard treatment programme and monitoring protocol implemented.',
+    outcome: 'Condenser cleanliness factor improved; Legionella risk controls established; chemical spend optimised.',
+  },
+];
+---
+<section id="case-studies" class="container-page py-16 md:py-24">
+  <div class="max-w-2xl">
+    <span class="eyebrow">Case Studies</span>
+    <h2 class="heading-xl mt-3">Results from real plant engagements.</h2>
+    <p class="lede mt-4">All cases anonymised. Names of the plants and operators are withheld in line with our client confidentiality.</p>
+  </div>
+  <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    {cases.map((c) => (
+      <article class="rounded-2xl border border-border-hair bg-card p-7 shadow-card">
+        <h3 class="font-display text-lg text-accent leading-snug">{c.title}</h3>
+        <p class="mt-2 text-xs text-ink-500">{c.meta}</p>
+        <p class="mt-4 text-sm text-ink-700 leading-relaxed">{c.body}</p>
+        <p class="mt-4 text-sm text-ink-800"><strong>Outcome:</strong> {c.outcome}</p>
+      </article>
+    ))}
+  </div>
+  <div class="mt-10 text-center">
+    <p class="text-ink-600">
+      <a href="#contact" class="text-accent font-medium underline-offset-4 hover:underline">Contact us to discuss your plant's challenge →</a>
+    </p>
+  </div>
+</section>

@@ -1,0 +1,39 @@
+---
+import Button from '../ui/Button.astro';
+
+const courses = [
+  { title: 'RO Plant Performance', blurb: 'How to monitor, troubleshoot, and optimise RO Plant performance.', mode: 'On-Demand' },
+  { title: 'Heat Exchanger Performance', blurb: 'How to monitor and predict heat exchanger performance.', mode: 'On-Demand' },
+  { title: 'Circulating Water Treatment', blurb: 'How to get the best out of cooling water treatment.', mode: 'On-Demand' },
+  { title: 'Steam-Water Cycle (Basic)', blurb: 'Boiler steam-water cycle chemistry parameters and control.', mode: 'On-Demand' },
+  { title: 'Steam-Water Cycle (Advanced)', blurb: 'Advanced boiler steam-water cycle chemistry and control.', mode: 'On-Demand' },
+  { title: 'Lowest Specific Water Consumption', blurb: 'Achieve the lowest specific water consumption in a coal-based thermal station.', mode: 'On-Demand' },
+  { title: 'Boiler Tube Failures', blurb: 'Boiler tube failure mechanisms and their corrective and preventive actions.', mode: 'Online / Onsite', tag: 'Most Popular' },
+  { title: 'Power Plant Chemistry Bootcamp', blurb: 'Two-day intensive on power plant chemistry.', mode: 'Online / Onsite', tag: 'Highest Value' },
+];
+---
+<section id="portfolio" class="container-page py-16 md:py-24">
+  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+    <div class="max-w-2xl">
+      <span class="eyebrow">Training Courses</span>
+      <h2 class="heading-xl mt-3">Knowledge from decades on the plant floor — packaged for your team.</h2>
+      <p class="lede mt-4">
+        Highly impactful on-demand and on-site training programmes designed to provide practical knowledge enriched with real-world examples. Engineers leave with frameworks they can apply on Monday morning.
+      </p>
+    </div>
+    <Button href="/trainings" size="lg">Training Catalogue →</Button>
+  </div>
+
+  <ul class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    {courses.map((c) => (
+      <li class="bento-tile flex flex-col">
+        {c.tag && (
+          <span class="self-start rounded-full bg-warm-soft text-warm px-2.5 py-0.5 text-xs font-semibold">{c.tag}</span>
+        )}
+        <h3 class="mt-3 font-display text-lg text-ink-900">{c.title}</h3>
+        <p class="mt-2 text-sm text-ink-600 leading-relaxed grow">{c.blurb}</p>
+        <span class="mt-4 inline-block text-xs uppercase tracking-widest text-ink-500">{c.mode}</span>
+      </li>
+    ))}
+  </ul>
+</section>

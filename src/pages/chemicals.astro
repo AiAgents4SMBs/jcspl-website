@@ -1,0 +1,154 @@
+---
+import BaseLayout from '@/components/layout/BaseLayout.astro';
+import Badge from '@/components/ui/Badge.astro';
+import Button from '@/components/ui/Button.astro';
+import { site } from '@/lib/site';
+
+type Row = { sr: number; product: string; desc: string; pack: string };
+
+const cooling: Row[] = [
+  { sr: 1, product: 'SigmaGuard - 9135', desc: 'Corrosion Inhibitor — with Zn Treatment', pack: '35, 50 Kg' },
+  { sr: 2, product: 'SigmaGuard - 9140', desc: 'Corrosion Inhibitor — with Zn Treatment', pack: '35, 50 Kg' },
+  { sr: 3, product: 'SigmaGuard - 9125D', desc: 'Corrosion Inhibitor — with Zn & Dispersant', pack: '35, 50 Kg' },
+  { sr: 4, product: 'SigmaGuard - 8330', desc: 'Scale Inhibitor — All Organic Treatment', pack: '35, 50 Kg' },
+  { sr: 5, product: 'SigmaGuard - 8330P', desc: 'Scale Inhibitor — All Organic (PBTC)', pack: '35, 50 Kg' },
+  { sr: 6, product: 'SigmaGuard - 7525', desc: 'Dispersant — Iron Dispersant', pack: '35, 50 Kg' },
+  { sr: 7, product: 'SigmaGuard - 6115LF', desc: 'Non-Oxidising Biocide (Quat)', pack: '35, 50 Kg' },
+  { sr: 8, product: 'SigmaGuard - 6210', desc: 'Non-Oxidising Biocide (ISO)', pack: '35, 50 Kg' },
+  { sr: 9, product: 'SigmaGuard - 5225', desc: 'Biodispersant', pack: '35, 50 Kg' },
+  { sr: 10, product: 'SigmaGuard - 9220', desc: 'Azole Treatment for Yellow Metal', pack: '35, 50 Kg' },
+  { sr: 11, product: 'SigmaGuard - 9830', desc: 'Closed-Loop Corrosion Inhibitor — Nitrite Based with Azole', pack: '35, 50 Kg' },
+  { sr: 12, product: 'SigmaGuard - 9720', desc: 'Corrosion Inhibitor — Molybdate-based with Azole', pack: '35, 50 Kg' },
+];
+
+const boiler: Row[] = [
+  { sr: 13, product: 'SigmaTreat - 1123', desc: 'PO4 Builder & Dispersant', pack: '35, 50 Kg' },
+  { sr: 14, product: 'SigmaTreat - 2425', desc: 'pH Booster cum Sludge Conditioner', pack: '35, 50 Kg' },
+  { sr: 15, product: 'SigmaTreat - 3528', desc: 'Inorganic Oxygen Scavenger with Catalyst', pack: '35, 50 Kg' },
+  { sr: 16, product: 'SigmaTreat - 3625', desc: 'Organic Oxygen Scavenger — Hydrazine-based', pack: '35, 50 Kg' },
+  { sr: 17, product: 'SigmaTreat - 4240', desc: 'Condensate Line Treatment', pack: '35, 50 Kg' },
+];
+
+const ro: Row[] = [
+  { sr: 18, product: 'MemPro', desc: 'General Antiscalant — Acidic', pack: '25, 35 & 50 Kg' },
+  { sr: 19, product: 'MemPro - 3000', desc: 'General Antiscalant — Alkaline', pack: '25, 35 & 50 Kg' },
+  { sr: 20, product: 'MemPro - 4000', desc: 'High Sulphate Antiscalant', pack: '25, 35 & 50 Kg' },
+  { sr: 21, product: 'MemPro - 5000', desc: 'High CaCO₃, CaSO₄, Iron up to 2.0 ppm & Silica (200 ppm)', pack: '25, 35 & 50 Kg' },
+  { sr: 22, product: 'MemPro - 6000', desc: 'High TDS with more than 80% Recovery — Sea Water', pack: '25, 35 & 50 Kg' },
+  { sr: 23, product: 'MemPro - 7000', desc: 'High TDS with Silica (250 ppm) & Iron up to 5.0 ppm', pack: '25, 35 & 50 Kg' },
+  { sr: 24, product: 'MemKlean - LP', desc: 'Low-pH Cleaner', pack: '25, 35 & 50 Kg' },
+  { sr: 25, product: 'MemKlean - HP', desc: 'High-pH Cleaner', pack: '25, 35 & 50 Kg' },
+  { sr: 26, product: 'MemKlean - SI', desc: 'Silica Cleaner', pack: '25, 35 & 50 Kg' },
+  { sr: 27, product: 'MemBiocon - 4210', desc: 'Online Biocide for ETP/STP-fed RO Plant', pack: '25, 35 & 50 Kg' },
+  { sr: 28, product: 'MemBiocon - 4220', desc: 'Online Biocide for ETP/STP-fed RO Plant', pack: '25, 35 & 50 Kg' },
+  { sr: 29, product: 'MemFlush - 4100', desc: 'Membrane flushing product to reduce cleaning cycles', pack: '25, 35 & 50 Kg' },
+];
+
+const poly: Row[] = [
+  { sr: 30, product: 'SigmaFloc - 5651', desc: 'De-Oiling Poly', pack: '50 Kg' },
+  { sr: 31, product: 'SigmaFloc - 1045', desc: 'Anionic Poly Powder for Raw Water Clarification', pack: '25 Kg Bag' },
+  { sr: 32, product: 'SigmaFloc - 2410', desc: 'Cationic Poly', pack: '50 Kg' },
+  { sr: 33, product: 'SigmaFloc - 6790', desc: 'De-Colour', pack: '50 Kg' },
+  { sr: 34, product: 'SigmaFloc - 5210', desc: 'STP Sludge De-watering Poly', pack: '25 Kg Bag' },
+  { sr: 35, product: 'SigmaFloc - 1021', desc: 'Chemical Sludge De-watering Poly', pack: '25 Kg Bag' },
+  { sr: 36, product: 'SigmaFloc - 5460', desc: 'Chemical Sludge De-watering Poly', pack: '25 Kg Bag' },
+  { sr: 37, product: 'SigmaFloc - 5760', desc: 'Chemical Sludge De-watering Poly', pack: '25 Kg Bag' },
+];
+
+const maintenance: Row[] = [
+  { sr: 38, product: 'KoolKlean - AC', desc: 'AC / AHU Cleaning Chemical', pack: '25, 35 & 50 Kg' },
+  { sr: 39, product: 'EffiKlean - HX', desc: 'Heat Exchanger / Condenser Cleaning (Copper, Brass tubes)', pack: '25, 35 & 50 Kg' },
+  { sr: 40, product: 'UltraKlean - SS', desc: 'SS Fasteners Polisher / Cleaner', pack: '25, 35 & 50 Kg' },
+  { sr: 41, product: 'UltraKlean - HWS', desc: 'Hot Water System / Geyser Cleaning Chemical', pack: '5 Kg × 4 = 20 Kg' },
+  { sr: 42, product: 'SigmaSperse EVA2050', desc: 'ME / Evaporator Antiscalant', pack: '25, 35 & 50 Kg' },
+];
+
+const sections = [
+  { id: 'cooling', title: 'Cooling Water Treatment', rows: cooling, range: '1–12' },
+  { id: 'boiler', title: 'Boiler Water Treatment', rows: boiler, range: '13–17' },
+  { id: 'ro', title: 'Reverse Osmosis Chemicals', rows: ro, range: '18–29' },
+  { id: 'poly', title: 'Water & Waste Water Polyelectrolyte Chemicals', rows: poly, range: '30–37' },
+  { id: 'maintenance', title: 'Maintenance / Cleaning Chemicals', rows: maintenance, range: '38–42' },
+];
+const mailto = `mailto:${site.emails.contact}?subject=PDS%20Request%20%E2%80%94%20Juschem%20Specialty%20Chemicals`;
+---
+<BaseLayout canonicalPath="/chemicals">
+  <section class="relative overflow-hidden">
+    <div class="bg-aurora" aria-hidden="true"></div>
+    <div class="container-page relative pt-16 md:pt-24 pb-10">
+      <div class="flex flex-wrap items-center gap-2">
+        <Badge tone="accent">Specialty Chemicals</Badge>
+        <Badge tone="warm">42 SKUs · 5 product families</Badge>
+      </div>
+      <h1 class="heading-xxl mt-6">Specialty Chemicals</h1>
+      <p class="lede mt-5">
+        For pricing, Product Data Sheets (PDS), and Safety Data Sheets (SDS), email
+        <a href={mailto} class="text-accent underline underline-offset-4">{site.emails.contact}</a>.
+      </p>
+
+      <div class="mt-6 rounded-2xl border border-accent-soft bg-accent-soft/40 p-5">
+        <p class="text-ink-800">
+          <strong>Not sure which product is right for your plant?</strong> Our consultants diagnose the chemistry before recommending any chemical.
+          <a href="/#contact" class="ml-1 font-medium text-accent underline-offset-4 hover:underline">Book a free 30-minute diagnostic call →</a>
+        </p>
+      </div>
+
+      <nav class="mt-8 flex flex-wrap gap-2 text-sm">
+        {sections.map((s) => (
+          <a href={`#${s.id}`} class="rounded-full border border-border-hair bg-card px-3 py-1.5 text-ink-700 hover:border-accent hover:text-accent">
+            {s.title} <span class="text-ink-400">·</span> <span class="text-ink-500">{s.range}</span>
+          </a>
+        ))}
+      </nav>
+    </div>
+  </section>
+
+  <section class="container-page pb-16 md:pb-24 space-y-14">
+    {sections.map((sec) => (
+      <div id={sec.id}>
+        <div class="flex items-end justify-between gap-4 flex-wrap">
+          <h2 class="heading-lg">{sec.title}</h2>
+          <span class="text-xs uppercase tracking-widest text-ink-500">SKUs {sec.range}</span>
+        </div>
+        <div class="mt-5 overflow-x-auto">
+          <table class="product-table">
+            <thead>
+              <tr>
+                <th>Sr #</th>
+                <th>Product</th>
+                <th>Description</th>
+                <th>Packing Size</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sec.rows.map((r) => (
+                <tr>
+                  <td class="sku">{r.sr}</td>
+                  <td class="sku">{r.product}</td>
+                  <td>{r.desc}</td>
+                  <td class="pack">{r.pack}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <section class="container-page pb-16 md:pb-24">
+    <div class="relative overflow-hidden rounded-3xl border border-border-hair bg-card p-10 md:p-14 shadow-lift">
+      <div class="grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-center">
+        <div>
+          <span class="eyebrow">Next step</span>
+          <h2 class="heading-xl mt-3">Request a PDS, SDS, or a chemistry audit.</h2>
+          <p class="lede mt-4">Email us your feed water analysis, unit configuration, and current chemistry programme — we'll come back with a structured recommendation, not a brochure.</p>
+        </div>
+        <div class="flex flex-col gap-3 md:items-end">
+          <Button href={mailto} size="lg">Request PDS / SDS</Button>
+          <Button href="/#contact" variant="secondary">Book a diagnostic call</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

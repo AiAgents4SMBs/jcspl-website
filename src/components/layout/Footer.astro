@@ -1,0 +1,69 @@
+---
+import { site } from '@/lib/site';
+const year = new Date().getFullYear();
+---
+<footer class="mt-24 md:mt-32 border-t border-border-hair bg-mist">
+  <div class="container-page py-16">
+    <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div>
+        <div class="flex items-center gap-2.5">
+          <img src="/jcspl_logo.png" alt="" width="36" height="36" class="h-9 w-9 object-contain" />
+          <span class="font-display text-lg tracking-tight">Just-<span class="text-accent">Chemicals</span></span>
+        </div>
+        <p class="mt-4 text-sm text-ink-600 max-w-sm leading-relaxed">
+          {site.legalEntity} — power plant chemistry consulting, certified training, and specialty chemicals for thermal power plants, refineries, and cement plants across India and Southeast Asia.
+        </p>
+        <p class="mt-4 text-sm text-ink-600 leading-relaxed">
+          {site.location.city}, {site.location.region}<br>
+          {site.location.country}<br>
+          <strong class="text-ink-800">Phone:</strong> <a class="hover:text-accent" href={`tel:${site.phone.e164}`}>{site.phone.display}</a><br>
+          <strong class="text-ink-800">Email:</strong> <a class="hover:text-accent" href={`mailto:${site.emails.contact}`}>{site.emails.contact}</a>
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-ink-500">Solutions</h3>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a class="text-ink-700 hover:text-accent" href="/chemicals">Specialty Chemicals</a></li>
+          <li><a class="text-ink-700 hover:text-accent" href="/trainings">Training Courses</a></li>
+          <li><a class="text-ink-700 hover:text-accent" href="/techie">JC Techie</a></li>
+          <li><a class="text-ink-700 hover:text-accent" href="/#services">All Services</a></li>
+          <li><a class="text-ink-700 hover:text-accent" href="/#case-studies">Case Studies</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-ink-500">Company</h3>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a class="text-ink-700 hover:text-accent" href="/#about">About</a></li>
+          <li><a class="text-ink-700 hover:text-accent" href="/#founder">Methodology</a></li>
+          <li><a class="text-ink-700 hover:text-accent" href="/#contact">Contact</a></li>
+          <li><a class="text-ink-700 hover:text-accent" href={`mailto:${site.emails.contact}`}>{site.emails.contact}</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-ink-500">Legal</h3>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a class="text-ink-700 hover:text-accent" href="/privacy">Privacy Policy</a></li>
+          <li><a class="text-ink-700 hover:text-accent" href="/terms">Terms of Service</a></li>
+        </ul>
+        <div class="mt-6 flex items-center gap-3">
+          <a href={site.socials.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border-hair text-ink-700 hover:text-accent hover:border-accent">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56v14H.22V8zm7.6 0h4.37v1.92h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7v7.46h-4.55v-6.62c0-1.58-.03-3.61-2.2-3.61-2.2 0-2.54 1.72-2.54 3.5V22H7.82V8z"/></svg>
+          </a>
+          <a href={site.socials.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border-hair text-ink-700 hover:text-accent hover:border-accent">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88V14.9H7.9V12h2.54V9.8c0-2.51 1.5-3.9 3.78-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.9h-2.33v6.98A10 10 0 0 0 22 12z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hair mt-12"></div>
+
+    <div class="mt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-ink-500">
+      <p>&copy; {year} {site.legalEntity}. All rights reserved.</p>
+      <p>CIN: {site.cin}</p>
+    </div>
+  </div>
+</footer>

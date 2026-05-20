@@ -1,0 +1,80 @@
+---
+import '@/styles/globals.css';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import { buildSeo, type SeoProps } from '@/lib/seo';
+import { site } from '@/lib/site';
+
+interface Props extends SeoProps {
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  variant?: 'default' | 'doc';
+}
+
+const { jsonLd, variant = 'default', ...seoProps } = Astro.props as Props;
+const seo = buildSeo(seoProps);
+
+const orgLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.legalEntity,
+  alternateName: site.name,
+  url: site.url,
+  logo: `${site.url}/jcspl_logo.png`,
+  email: site.emails.contact,
+  telephone: site.phone.display,
+  identifier: site.cin,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: site.location.city,
+    addressRegion: site.location.region,
+    addressCountry: site.location.country,
+  },
+  sameAs: [site.socials.linkedin, site.socials.facebook],
+};
+
+const ldGraph = Array.isArray(jsonLd) ? [orgLd, ...jsonLd] : jsonLd ? [orgLd, jsonLd] : [orgLd];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    {seo.keywords && <meta name="keywords" content={seo.keywords} />}
+    <link rel="canonical" href={seo.canonical} />
+    {seo.noIndex && <meta name="robots" content="noindex,nofollow" />}
+
+    <link rel="icon" type="image/png" href="/jcspl_logo.png" />
+    <meta name="theme-color" content="#0E6FC7" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    <meta property="og:url" content={seo.canonical} />
+    <meta property="og:image" content={seo.ogImage} />
+    <meta property="og:locale" content="en_IN" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={seo.title} />
+    <meta name="twitter:description" content={seo.description} />
+    <meta name="twitter:image" content={seo.ogImage} />
+
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(ldGraph)} />
+
+    {/* TODO: analytics — drop Microsoft Clarity / GA4 inline scripts here when IDs available */}
+  </head>
+  <body class="bg-canvas text-ink-900">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:bg-card focus:px-3 focus:py-2 focus:rounded-md focus:shadow-card">Skip to content</a>
+    <Header />
+    <main id="main" class={variant === 'doc' ? 'py-16 md:py-24' : ''}>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

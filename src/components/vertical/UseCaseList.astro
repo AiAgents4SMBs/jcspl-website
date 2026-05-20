@@ -1,0 +1,24 @@
+---
+interface Props {
+  useCases: { title: string; description: string }[];
+  accentHex: string;
+}
+const { useCases, accentHex } = Astro.props as Props;
+---
+<section class="bg-mist py-16 md:py-24 border-y border-border-hair">
+  <div class="container-page">
+    <div class="max-w-2xl">
+      <span class="eyebrow">Where it applies</span>
+      <h2 class="heading-xl mt-3">Tuned to plants we've actually walked.</h2>
+    </div>
+    <div class="mt-12 grid gap-6 md:grid-cols-2">
+      {useCases.map((u, i) => (
+        <article class="relative rounded-2xl bg-card p-7 border border-border-hair shadow-card">
+          <span class="font-display text-5xl text-ink-300 leading-none" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="mt-3 font-display text-2xl text-ink-900" style={`color: ${accentHex}`}>{u.title}</h3>
+          <p class="mt-3 text-ink-600 leading-relaxed">{u.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

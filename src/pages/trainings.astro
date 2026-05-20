@@ -1,0 +1,175 @@
+---
+import BaseLayout from '@/components/layout/BaseLayout.astro';
+import Badge from '@/components/ui/Badge.astro';
+import Button from '@/components/ui/Button.astro';
+import { site } from '@/lib/site';
+
+const onlineForm = 'https://forms.office.com/Pages/ResponsePage.aspx?id=F3xhgKxBzkaqTYildkp7LQIAjl-k9tFIoJMuQ1iyS9JUM1gwNE9FRjJYV1NUQkpEUDA3UE04S0tUVi4u';
+const videoForm = 'https://forms.office.com/Pages/ResponsePage.aspx?id=F3xhgKxBzkaqTYildkp7LQIAjl-k9tFIoJMuQ1iyS9JUMTNOUTBBNTRZWUw5SjlXQjlQVzRaWDEwUC4u';
+const advForm = 'https://forms.office.com/Pages/ResponsePage.aspx?id=F3xhgKxBzkaqTYildkp7LQIAjl-k9tFIoJMuQ1iyS9JUOTdDMFlMTDFQS0NIOEs0TTJXUFlNSFVTRi4u';
+
+const onDemand = [
+  { code: 'J101', topic: 'How to monitor, troubleshoot, and optimise RO Plant performance to its best?', duration: '3 Hrs' },
+  { code: 'J102', topic: 'How to monitor and predict your heat exchanger performance to its best?', duration: '3 Hrs' },
+  { code: 'J103', topic: 'How to get the best out of your Circulating Water Treatment?', duration: '3 Hrs' },
+  { code: 'J104', topic: 'Basic — Boiler Steam-water cycle chemistry, parameters, and controls', duration: '4 Hrs' },
+  { code: 'J105', topic: 'Advanced — Boiler Steam-water cycle chemistry controls', duration: '5 Hrs' },
+  { code: 'J106', topic: 'How to get the best out of your water treatment plants and processes?', duration: '5 Hrs' },
+  { code: 'J107', topic: 'An insight to coal quality assessment', duration: '9 Hrs' },
+  { code: 'J108', topic: 'Workplace assessment for safety and hygiene', duration: '3 Hrs' },
+  { code: 'J109', topic: 'How to achieve the lowest specific water consumption in a coal-based thermal power station?', duration: '3 Hrs' },
+];
+
+const videos = [
+  { code: 'J201', topic: 'How to get the best from your cooling water treatment?', duration: '3 Hrs 9 Mins' },
+  { code: 'J202', topic: 'IoT on RO predictive analytics and saving membrane life', duration: '35 Mins' },
+  { code: 'J203', topic: 'RO Best Practices', duration: '3 Hrs 29 Mins' },
+  { code: 'J204', topic: 'How to monitor and predict your heat exchanger performance to its best?', duration: '3 Hrs 27 Mins' },
+  { code: 'J205', topic: 'Steam-Water Cycle Chemistry Basics', duration: '4 Hrs 30 Mins' },
+  { code: 'J206', topic: 'Advanced Steam-water cycle chemistry and its control', duration: '5 Hrs 12 Mins' },
+  { code: 'J207', topic: 'Water Treatment Video — Part 1 of 5: Source, impurities, and aeration', duration: '58 Mins' },
+  { code: 'J208', topic: 'Water Treatment Video — Part 2 of 5: Coagulation and flocculation', duration: '1 Hr 33 Mins' },
+  { code: 'J209', topic: 'Water Treatment Video — Part 3 of 5: Filtration', duration: '53 Mins' },
+  { code: 'J210', topic: 'Water Treatment Video — Part 4 of 5: Disinfection', duration: '1 Hr 24 Mins' },
+  { code: 'J211', topic: 'Water Treatment Video — Part 5 of 5: TDS removal, ion exchange, RO best operations, and EDI', duration: '2 Hrs' },
+  { code: 'J212', topic: 'Recent advances in power plant chemistry', duration: '2 Hrs 20 Mins' },
+  { code: 'J213', topic: 'An insight to coal quality (Sampling as per IS specifications, auto samplers, stone assessment)', duration: '3 Hrs 12 Mins' },
+  { code: 'J214', topic: 'An insight to coal quality (Sample preparation and analysis as per IS, auto analyzers)', duration: '3 Hrs 21 Mins' },
+  { code: 'J215', topic: 'Coal Quality & Combustion Calculations', duration: '38 Mins' },
+  { code: 'J216', topic: 'Effect of coal physical and chemical properties on boiler', duration: '1 Hr 7 Mins' },
+  { code: 'J217', topic: 'Cooling water treatment and heat exchanger monitoring for sea-water cooling systems', duration: '4 Hrs 43 Mins' },
+];
+
+const advanced = [
+  { code: 'J301', topic: 'Dynamics of cooling water treatment, heat transfer monitoring across heat exchanger, condenser, and cooling tower', duration: '15 Hrs', days: '2–3 days', tag: null },
+  { code: 'J302', topic: 'Boiler Tube Failure Mechanisms and their Corrective and Preventive Actions', duration: '22 Hrs', days: '3–4 days', tag: 'Most Popular' },
+  { code: 'J303', topic: 'Best practices on Reverse Osmosis (RO) operations and monitoring', duration: '15 Hrs', days: '2–3 days', tag: null },
+  { code: 'J304', topic: 'Power Plant Chemistry — 2-Day Bootcamp', duration: '22 Hrs', days: '3–4 days', tag: 'Highest Value' },
+  { code: 'J305', topic: 'Significance of water treatment and water management', duration: '15 Hrs', days: '2–3 days', tag: null },
+  { code: 'J306', topic: 'Boiler steam-water cycle chemistry, parameters, and controls', duration: '15 Hrs', days: '2–3 days', tag: null },
+  { code: 'J307', topic: 'An insight to coal quality and combustion', duration: '15 Hrs', days: '2–3 days', tag: null },
+  { code: 'J308', topic: 'Integrated water management framework and water audits for industries', duration: '15 Hrs', days: '2–3 days', tag: null },
+];
+
+const enquiryMailto = `mailto:${site.emails.contact}?subject=Training%20Enquiry`;
+---
+<BaseLayout canonicalPath="/trainings">
+  <section class="relative overflow-hidden">
+    <div class="bg-aurora" aria-hidden="true"></div>
+    <div class="container-page relative pt-16 md:pt-24 pb-10">
+      <div class="flex flex-wrap items-center gap-2">
+        <Badge tone="warm">Training Catalogue</Badge>
+        <Badge tone="accent">Juschem Certified Power Plant Chemist</Badge>
+      </div>
+      <h1 class="heading-xxl mt-6">Training Courses — Power Plant Chemistry &amp; Water Treatment</h1>
+      <div class="mt-6 rounded-2xl border border-warm-soft bg-warm-soft/50 p-5 text-ink-800">
+        <p>
+          <strong>Juschem Certified Power Plant Chemist:</strong> Complete any Advanced / On-site course (J300 series) and receive a Juschem certification credential.
+          Individual online courses from <strong>$200</strong> · Team licences from <strong>$2,000</strong> · Enterprise plant subscriptions from <strong>$10,000/yr</strong>.
+          Email <a href={enquiryMailto} class="text-accent underline underline-offset-4">{site.emails.contact}</a> for group pricing.
+        </p>
+      </div>
+      <nav class="mt-8 flex flex-wrap gap-2 text-sm">
+        <a href="#ondemand" class="rounded-full border border-border-hair bg-card px-3 py-1.5 text-ink-700 hover:border-accent hover:text-accent">On-Demand Online (J100)</a>
+        <a href="#videos" class="rounded-full border border-border-hair bg-card px-3 py-1.5 text-ink-700 hover:border-accent hover:text-accent">Training Videos (J200)</a>
+        <a href="#advanced" class="rounded-full border border-border-hair bg-card px-3 py-1.5 text-ink-700 hover:border-accent hover:text-accent">Advanced / On-Site (J300)</a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="container-page pb-16 md:pb-24 space-y-14">
+    <div id="ondemand">
+      <div class="flex items-end justify-between gap-4 flex-wrap">
+        <h2 class="heading-lg">On-Demand Online Trainings</h2>
+        <span class="text-xs uppercase tracking-widest text-ink-500">J100 series</span>
+      </div>
+      <div class="mt-5 overflow-x-auto">
+        <table class="product-table">
+          <thead>
+            <tr><th>Code</th><th>Topic</th><th>Duration</th><th>Register</th></tr>
+          </thead>
+          <tbody>
+            {onDemand.map((r) => (
+              <tr>
+                <td class="sku">{r.code}</td>
+                <td>{r.topic}</td>
+                <td class="pack">{r.duration}</td>
+                <td><a href={onlineForm} target="_blank" rel="noopener noreferrer" class="text-accent font-medium hover:underline">Register →</a></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="videos">
+      <div class="flex items-end justify-between gap-4 flex-wrap">
+        <h2 class="heading-lg">On-Demand Training Videos</h2>
+        <span class="text-xs uppercase tracking-widest text-ink-500">J200 series</span>
+      </div>
+      <div class="mt-5 overflow-x-auto">
+        <table class="product-table">
+          <thead>
+            <tr><th>Code</th><th>Topic</th><th>Duration</th><th>Buy</th></tr>
+          </thead>
+          <tbody>
+            {videos.map((r) => (
+              <tr>
+                <td class="sku">{r.code}</td>
+                <td>{r.topic}</td>
+                <td class="pack">{r.duration}</td>
+                <td><a href={videoForm} target="_blank" rel="noopener noreferrer" class="text-accent font-medium hover:underline">Buy →</a></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="advanced">
+      <div class="flex items-end justify-between gap-4 flex-wrap">
+        <h2 class="heading-lg">Advanced / On-Site Training</h2>
+        <span class="text-xs uppercase tracking-widest text-ink-500">J300 series · Certified credential</span>
+      </div>
+      <div class="mt-5 overflow-x-auto">
+        <table class="product-table">
+          <thead>
+            <tr><th>Code</th><th>Topic</th><th>Duration</th><th>Days</th><th>Contact</th></tr>
+          </thead>
+          <tbody>
+            {advanced.map((r) => (
+              <tr>
+                <td class="sku">{r.code}</td>
+                <td>
+                  {r.topic}
+                  {r.tag && (
+                    <span class:list={['ml-2 inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold', r.tag === 'Most Popular' ? 'bg-success-soft text-success' : 'bg-accent-soft text-accent-dark']}>★ {r.tag}</span>
+                  )}
+                </td>
+                <td class="pack">{r.duration}</td>
+                <td class="pack">{r.days}</td>
+                <td><a href={advForm} target="_blank" rel="noopener noreferrer" class="text-accent font-medium hover:underline">Enquire →</a></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page pb-16 md:pb-24">
+    <div class="relative overflow-hidden rounded-3xl border border-border-hair bg-card p-10 md:p-14 shadow-lift">
+      <div class="grid gap-8 md:grid-cols-[1.4fr_1fr] md:items-center">
+        <div>
+          <span class="eyebrow">Group &amp; Enterprise</span>
+          <h2 class="heading-xl mt-3">Train a team, certify a plant.</h2>
+          <p class="lede mt-4">For group pricing, customised on-site delivery, and enterprise plant subscriptions, email Soumitra Banerjee directly. We respond within one business day.</p>
+        </div>
+        <div class="flex flex-col gap-3 md:items-end">
+          <Button href={enquiryMailto} size="lg">Email for group pricing</Button>
+          <Button href="/#contact" variant="secondary">Or talk to us first</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
