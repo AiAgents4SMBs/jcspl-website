@@ -7,7 +7,7 @@ export interface PageSeo {
 const KW = {
   brand: 'Just-Chemicals, Juschem Solutions, JCSPL, power plant chemistry India',
   geo: 'India, Bangalore, Southeast Asia',
-  standards: 'IAPWS, EPRI, VGB, Jurans Trilogy',
+  standards: 'EPRI, VGB, Jurans Trilogy',
   chemicals: 'SigmaGuard, SigmaTreat, MemPro, SigmaFloc, cooling water treatment, boiler water treatment, RO antiscalant, polyelectrolyte',
   trainings: 'boiler tube failure training, power plant chemistry course, RO training, steam-water cycle chemistry, cooling water training',
 };
@@ -16,7 +16,7 @@ export const seoConfig: Record<string, PageSeo> = {
   '/': {
     title: 'Power Plant Chemistry Consulting, Training & Specialty Chemicals — Just-Chemicals',
     description:
-      'IAPWS/EPRI/VGB-aligned power plant chemistry. Specialty chemicals, certified training, and audits for thermal power plants, refineries, and cement. Trusted by 40+ industrial plants.',
+      'EPRI/VGB-aligned power plant chemistry. Specialty chemicals, certified training, and audits for thermal power plants, refineries, and cement. Trusted by 40+ industrial plants.',
     keywords: `${KW.brand}, ${KW.standards}, ${KW.chemicals}, ${KW.geo}`,
   },
   '/chemicals': {
