@@ -17,65 +17,20 @@ import { site } from '@/lib/site';
     </p>
 
     <div class="mt-10 grid gap-10 md:grid-cols-[1.4fr_1fr]">
-      <form
-        method="POST"
-        action={`https://formsubmit.co/${site.emails.contact}`}
-        class="space-y-5 rounded-2xl border border-border-hair bg-card p-6 md:p-8 shadow-card"
-      >
-        <input type="hidden" name="_subject" value="New enquiry from /contact/" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_next" value={`${site.url}/contact/?sent=1`} />
-        <div class="grid gap-5 md:grid-cols-2">
-          <label class="block">
-            <span class="text-sm font-medium text-ink-800">Your name</span>
-            <input required name="name" type="text" class="mt-1.5 block w-full rounded-lg border border-border-hair bg-canvas px-3 py-2.5 text-ink-900 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent-soft" />
-          </label>
-          <label class="block">
-            <span class="text-sm font-medium text-ink-800">Work email</span>
-            <input required name="email" type="email" class="mt-1.5 block w-full rounded-lg border border-border-hair bg-canvas px-3 py-2.5 text-ink-900 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent-soft" />
-          </label>
-        </div>
-
-        <div class="grid gap-5 md:grid-cols-2">
-          <label class="block">
-            <span class="text-sm font-medium text-ink-800">Company / plant</span>
-            <input required name="company" type="text" class="mt-1.5 block w-full rounded-lg border border-border-hair bg-canvas px-3 py-2.5 text-ink-900 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent-soft" />
-          </label>
-          <label class="block">
-            <span class="text-sm font-medium text-ink-800">Role / title</span>
-            <input name="role" type="text" placeholder="e.g. Chief Chemist, DGM-Chemistry" class="mt-1.5 block w-full rounded-lg border border-border-hair bg-canvas px-3 py-2.5 text-ink-900 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent-soft" />
-          </label>
-        </div>
-
-        <fieldset>
-          <legend class="text-sm font-medium text-ink-800">What do you need? <span class="text-ink-500 font-normal">(pick any)</span></legend>
-          <div class="mt-2 grid gap-2 md:grid-cols-2 text-sm">
-            <label class="inline-flex items-center gap-2"><input type="checkbox" name="interest" value="Specialty chemicals" /> Specialty chemicals (SigmaGuard / SigmaTreat / MemPro / SigmaFloc)</label>
-            <label class="inline-flex items-center gap-2"><input type="checkbox" name="interest" value="Consulting / audit" /> Consulting / audit / investigation</label>
-            <label class="inline-flex items-center gap-2"><input type="checkbox" name="interest" value="Training" /> Training (J100 / J200 / J300)</label>
-            <label class="inline-flex items-center gap-2"><input type="checkbox" name="interest" value="Turnkey / RO / ZLD" /> Turnkey design / RO / ZLD</label>
-          </div>
-        </fieldset>
-
-        <label class="block">
-          <span class="text-sm font-medium text-ink-800">Tell us more</span>
-          <textarea required name="message" rows="5" placeholder="Plant type and capacity, the issue or scope, timeline." class="mt-1.5 block w-full rounded-lg border border-border-hair bg-canvas px-3 py-2.5 text-ink-900 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent-soft"></textarea>
-        </label>
-
-        <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" />
-
+      <div class="space-y-4 rounded-2xl border border-border-hair bg-card p-6 md:p-8 shadow-card">
+        <h2 class="font-display text-xl text-ink-900">Reach us directly</h2>
+        <p class="text-ink-700 leading-relaxed">
+          Our online enquiry form is currently unavailable. To start a conversation, email or call us with your plant type, the problem you're solving, and your timeline — we reply within one business day.
+        </p>
         <div class="flex flex-wrap items-center gap-3">
-          <button type="submit" disabled aria-disabled="true" class="inline-flex items-center justify-center gap-1.5 rounded-full bg-accent text-white px-5 py-2.5 font-medium opacity-50 cursor-not-allowed">
-            Send enquiry
-          </button>
-          <span class="text-xs text-ink-500">Online enquiries are temporarily unavailable — please email or call us directly.</span>
+          <a href={`mailto:${site.emails.contact}`} class="inline-flex items-center justify-center gap-1.5 rounded-full bg-accent text-white px-5 py-2.5 font-medium hover:bg-accent-dark transition-all">
+            Email us
+          </a>
+          <a href={`tel:${site.phone.e164}`} class="inline-flex items-center justify-center gap-1.5 rounded-full border border-border-hair px-5 py-2.5 font-medium text-ink-800 hover:border-accent transition-all">
+            Call us
+          </a>
         </div>
-
-        {Astro.url.searchParams.get('sent') === '1' && (
-          <p class="rounded-lg bg-success-soft text-success px-4 py-3 text-sm">Thanks — message received. We'll reply within one business day.</p>
-        )}
-      </form>
+      </div>
 
       <aside class="space-y-6">
         <div class="rounded-2xl border border-border-hair bg-mist p-6">
