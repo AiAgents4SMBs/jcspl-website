@@ -5,7 +5,7 @@ export const site = {
   url: 'https://www.just-chemicals.com',
   tagline: 'Power plant chemistry that stops failures before they start.',
   description:
-    'Juschem Solutions Pvt. Ltd. — IAPWS/EPRI/VGB-aligned power plant chemistry consulting, certified training, and specialty chemicals. Trusted by JSW Energy, Tata Power, IOCL, and 40+ industrial plants.',
+    'Juschem Solutions Pvt. Ltd. — EPRI/VGB-aligned power plant chemistry consulting, certified training, and specialty chemicals. Trusted by JSW Energy, Tata Power, IOCL, and 40+ industrial plants.',
   emails: {
     contact: 'Contact@just-chemicals.com',
   },
